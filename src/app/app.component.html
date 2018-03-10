@@ -1,20 +1,13 @@
-<div>
-  <table>
-    <thead>
-      <tr>
-        <th></th>
-        <th *ngFor="let patternSelector of cultures['default'].patternSelectors">{{patternSelector}}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let cultureSelector of cultureSelectors">
-        <td>{{cultureSelector}}</td>
-        <td *ngFor="let patternSelector of cultures[cultureSelector].patternSelectors">{{cultures[cultureSelector].formattedDates[patternSelector]}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<section>
+  <select (change)="onChange($event)">
+    <option value="0">Globalize 0.1.1</option>
+    <option value="1">Globalize 1.3.0</option>
+  </select>
+</section>
 
-<div>
-  <button (click)='demoFun()'> Button </button>
-</div>
+<app-example0 *ngIf="selectedSection === 0"></app-example0>
+<app-example1 *ngIf="selectedSection === 1"></app-example1>
+
+<section>
+  <button (click)='demoFun()'>Button</button>
+</section>

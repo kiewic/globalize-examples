@@ -1,0 +1,16 @@
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th *ngFor="let patternSelector of cultures['default'].patternSelectors">{{patternSelector}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cultureSelector of cultureSelectors">
+        <td>{{cultureSelector}}</td>
+        <td *ngFor="let patternSelector of cultures[cultureSelector].patternSelectors">{{cultures[cultureSelector].formattedDates[patternSelector]}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
