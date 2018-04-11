@@ -5,11 +5,11 @@ import { CultureModel } from './CultureModel'
 declare var Globalize: any;
 
 @Component({
-  selector: 'app-example0',
-  templateUrl: './example0.component.html',
-  styleUrls: ['./example0.component.css']
+  selector: 'app-version011-dates',
+  templateUrl: './version011-dates.component.html',
+  styleUrls: ['./version011-dates.component.css']
 })
-export class Example0Component implements OnInit {
+export class Version011DatesComponent implements OnInit {
 
   cultureSelectors: string[];
   cultures: { [id: string]: CultureModel };

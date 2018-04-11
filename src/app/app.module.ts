@@ -3,15 +3,15 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { Example0Component } from './example0/example0.component';
-import { Example1Component } from './example1/example1.component';
+import { Version011DatesComponent } from './version011-dates/version011-dates.component';
+import { Version130DatesComponent } from './version130-dates/version130-dates.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    Example0Component,
-    Example1Component
+    Version011DatesComponent,
+    Version130DatesComponent
   ],
   imports: [
     BrowserModule

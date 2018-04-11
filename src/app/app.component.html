@@ -1,12 +1,14 @@
 <section>
   <select (change)="onChange($event)">
-    <option value="0">Globalize 0.1.1</option>
-    <option value="1">Globalize 1.3.0</option>
+    <option value="0">Globalize 0.1.1 (dates)</option>
+    <option value="1">Globalize 0.1.1 (numbers)</option>
+    <option value="2">Globalize 1.3.0</option>
   </select>
 </section>
 
-<app-example0 *ngIf="selectedSection === 0"></app-example0>
-<app-example1 *ngIf="selectedSection === 1"></app-example1>
+<app-version011-dates *ngIf="selectedSection === 0"></app-version011-dates>
+<app-version011-dates *ngIf="selectedSection === 1"></app-version011-dates>
+<app-version130-dates *ngIf="selectedSection === 2"></app-version130-dates>
 
 <section>
   <button (click)='demoFun()'>Button</button>
