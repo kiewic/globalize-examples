@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CultureModel } from './CultureModel'
+import { CultureModel } from './shared/culture.model'
 
 // Quick and Dirty
 declare var Globalize: any;
@@ -17,8 +17,8 @@ export class Version011DatesComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.cultures = {};
     this.cultureSelectors = Object.keys(Globalize.cultures);
+    this.cultures = {};
     this.formatNumber();
     this.formatDate();
   }

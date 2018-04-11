@@ -1,0 +1,23 @@
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>+</th>
+        <th>-</th>
+        <th>.</th>
+        <th>,</th>
+        <!-- <th *ngFor="let patternSelector of cultures['default'].patternSelectors">{{patternSelector}}</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cultureSelector of cultureSelectors">
+        <td>{{cultureSelector}}</td>
+        <td>{{numberFormats[cultureSelector]['+']}}</td>
+        <td>{{numberFormats[cultureSelector]['-']}}</td>
+        <td>{{numberFormats[cultureSelector]['.']}}</td>
+        <td>{{numberFormats[cultureSelector][',']}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
