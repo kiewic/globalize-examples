@@ -1,10 +1,3 @@
-<h2>Only globalize 0.1.1: {{onlyVersion0LocaleNames.length}}</h2>
-<div class="locales">
-  <div class="locale warning" *ngFor="let localeName of onlyVersion0LocaleNames">
-    {{localeName}}
-  </div>
-</div>
-
 <h2>Globalize 0.1.1 &amp; CLDR modern: {{bothModernLocaleNames.length}}</h2>
 <div class="locales">
   <div class="locale" *ngFor="let localeName of bothModernLocaleNames">
@@ -16,6 +9,14 @@
 <div class="locales">
   <div class="locale" *ngFor="let localeName of bothFullLocaleNames">
     {{localeName}}
+  </div>
+</div>
+
+<h2>Only Globalize 0.1.1: {{onlyVersion0LocaleNames.length}}</h2>
+<div class="locales">
+  <div class="locale warning" *ngFor="let locale of onlyVersion0LocaleNames">
+      <div class="good" *ngIf="locale.likelyName; else elseBlock">{{locale.name}} &#x2192; {{locale.likelyName}}</div>
+      <ng-template #elseBlock><span>{{locale.name}}</span></ng-template>
   </div>
 </div>
 
