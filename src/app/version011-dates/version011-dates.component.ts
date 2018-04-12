@@ -19,7 +19,7 @@ export class Version011DatesComponent implements OnInit {
   ngOnInit() {
     this.cultureSelectors = Object.keys(Globalize.cultures);
     this.cultures = {};
-    this.formatNumber();
+    // this.formatNumber();
     this.formatDate();
   }
 

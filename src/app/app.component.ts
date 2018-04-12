@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  selectedSection: number = 0;
+  selectedSection: number = 4;
 
   ngOnInit() {
   }

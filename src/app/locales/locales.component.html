@@ -1,0 +1,34 @@
+<h2>Only globalize 0.1.1: {{onlyVersion0LocaleNames.length}}</h2>
+<div class="locales">
+  <div class="locale warning" *ngFor="let localeName of onlyVersion0LocaleNames">
+    {{localeName}}
+  </div>
+</div>
+
+<h2>Globalize 0.1.1 &amp; CLDR modern: {{bothModernLocaleNames.length}}</h2>
+<div class="locales">
+  <div class="locale" *ngFor="let localeName of bothModernLocaleNames">
+    {{localeName}}
+  </div>
+</div>
+
+<h2>Globalize 0.1.1 &amp; CLDR full: {{bothFullLocaleNames.length}}</h2>
+<div class="locales">
+  <div class="locale" *ngFor="let localeName of bothFullLocaleNames">
+    {{localeName}}
+  </div>
+</div>
+
+<h2>Only CLDR modern: {{onlyModernLocaleNames.length}}</h2>
+<div class="locales">
+  <div class="locale" *ngFor="let localeName of onlyModernLocaleNames">
+    {{localeName}}
+  </div>
+</div>
+
+<h2>Only CLDR full: {{onlyFullLocaleNames.length}}</h2>
+<div class="locales">
+  <div class="locale" *ngFor="let localeName of onlyFullLocaleNames">
+    {{localeName}}
+  </div>
+</div>

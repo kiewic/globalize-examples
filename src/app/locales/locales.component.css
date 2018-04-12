@@ -1,0 +1,18 @@
+.locales  {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+
+.locale {
+  background-color: lightcoral;
+  background-color: lightgreen;
+  min-width: 80pt;
+  display: block;
+  text-align: center;
+  margin: 2px;
+}
+
+.warning {
+  background-color: palegoldenrod;
+}
