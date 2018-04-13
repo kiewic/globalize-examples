@@ -35,16 +35,17 @@ export class LocalesComponent implements OnInit {
       availableLocales.splice(availableLocales.indexOf("root"), 1);
       this._availableBundleMapQueue = availableLocales;
     };
-    Cldr.setAvailableBundlesHack(this.localeNameService.getFullLocaleNames());
 
+    Cldr.setAvailableBundlesHack(this.localeNameService.getModernLocaleNames());
     this.compare(this.modern, this.localeNameService.getVersion0LocalNames(), this.localeNameService.getModernLocaleNames());
+
+    Cldr.setAvailableBundlesHack(this.localeNameService.getFullLocaleNames());
     this.compare(this.full, this.localeNameService.getVersion0LocalNames(), this.localeNameService.getFullLocaleNames());
   }
 
   private compare(buckets: LocaleNameBuckets, version0: string[], version1: string[]) {
     for (const localeName of version0) {
       const index = version1.indexOf(localeName);
-      console.log(localeName, index);
       if (index > -1) {
         version1.splice(index, 1);
         buckets.same.push(localeName);
@@ -53,6 +54,7 @@ export class LocalesComponent implements OnInit {
 
       const likelyName = new Cldr(localeName).attributes.bundle;
       if (likelyName) {
+        console.assert(this.pairs[localeName] === undefined || this.pairs[localeName] === likelyName);
         version1.splice(index, 1);
         buckets.changed.push(localeName);
         this.pairs[localeName] = likelyName;

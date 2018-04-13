@@ -1,58 +1,82 @@
 <div class="rows">
   <div class="row header">
     <div class="cell header"></div>
-    <div class="cell header">Modern</div>
-    <div class="cell header">Full</div>
+    <div class="cell intersection header">Modern</div>
+    <div class="cell intersection header">Full</div>
   </div>
   <div class="row">
     <div class="cell title">Same name</div>
     <div class="cell intersection">
-      <div class="locale" *ngFor="let localeName of modern.same">
-        {{localeName}}
+      <div>count: {{modern.same.length}}</div>
+      <div class="locales">
+        <div class="locale" *ngFor="let localeName of modern.same">
+          {{localeName}}
+        </div>
       </div>
     </div>
     <div class="cell intersection">
-      <div class="locale" *ngFor="let localeName of full.same">
-        {{localeName}}
+      <div>count: {{full.same.length}}</div>
+      <div class="locales">
+        <div class="locale" *ngFor="let localeName of full.same">
+          {{localeName}}
+        </div>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="cell title">Changed name</div>
     <div class="cell intersection">
-      <div class="locale" *ngFor="let localeName of modern.changed">
-        {{localeName}} &#x2192; {{pairs[localeName]}}
+      <div>count: {{modern.changed.length}}</div>
+      <div class="locales">
+        <div class="locale" *ngFor="let localeName of modern.changed">
+          {{localeName}} &#x2192; {{pairs[localeName]}}
+        </div>
       </div>
     </div>
     <div class="cell intersection">
-      <div class="locale" *ngFor="let localeName of full.changed">
-        {{localeName}} &#x2192; {{pairs[localeName]}}
+      <div>count: {{full.changed.length}}</div>
+      <div class="locales">
+        <div class="locale" *ngFor="let localeName of full.changed">
+          {{localeName}} &#x2192; {{pairs[localeName]}}
+        </div>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="cell title">New locales</div>
     <div class="cell intersection">
-      <div class="locale" *ngFor="let localeName of modern.added">
-        {{localeName}}
+      <div class="locales">
+        <div>count: {{modern.added.length}}</div>
+        <div class="locale" *ngFor="let localeName of modern.added">
+          {{localeName}}
+        </div>
       </div>
     </div>
     <div class="cell intersection">
-      <div class="locale" *ngFor="let localeName of full.added">
-        {{localeName}}
+      <div>count: {{full.added.length}}</div>
+      <div class="locales">
+        <div class="locale" *ngFor="let localeName of full.added">
+          {{localeName}}
+        </div>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="cell title">Not available</div>
     <div class="cell intersection">
-      <div class="locale" *ngFor="let localeName of modern.removed">
-        {{localeName}}
+      <div>count: {{modern.removed.length}}</div>
+      <div class="locales">
+        <div class="locale" *ngFor="let localeName of modern.removed">
+          {{localeName}}
+        </div>
       </div>
     </div>
     <div class="cell intersection">
-      <div class="locale" *ngFor="let localeName of full.removed">
-        {{localeName}}
+      <div>count: {{full.removed.length}}</div>
+      <div class="locales">
+        <div class="locale" *ngFor="let localeName of full.removed">
+          {{localeName}}
+        </div>
       </div>
     </div>
   </div>

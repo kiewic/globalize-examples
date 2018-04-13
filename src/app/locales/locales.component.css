@@ -1,11 +1,3 @@
-.locales  {
-  display: flex;
-  flex-grow: 1;
-}
-
-.locale {
-}
-
 .warning {
   background-color: palegoldenrod;
   background-color: lightcoral;
@@ -31,7 +23,6 @@
 .rows .row .cell {
   background-color: palegreen;
   margin: 2pt;
-  flex-basis: 33%;
 }
 
 .rows .row .header,
@@ -48,12 +39,19 @@
   font-size: large;
 }
 
+.intersection.header,
 .intersection {
-  display: flex;
-  flex-wrap: wrap;
+  /* as flex child */
+  flex-basis: 40%;
 }
 
-.intersection .locale {
+.locales {
+  /* as flex parent */
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+.locales .locale {
   background-color: lightgreen;
   min-width: 70pt;
   text-align: center;
