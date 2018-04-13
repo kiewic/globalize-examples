@@ -1,15 +1,9 @@
 .locales  {
   display: flex;
-  flex-wrap: wrap;
   flex-grow: 1;
 }
 
 .locale {
-  background-color: lightgreen;
-  min-width: 80pt;
-  display: block;
-  text-align: center;
-  margin: 2pt;
 }
 
 .warning {
@@ -20,4 +14,48 @@
 
 .warning .good {
   background-color: palegreen;
+}
+
+/* Version 2 */
+
+.rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.rows .row {
+  display: flex;
+  flex-direction: row;
+}
+
+.rows .row .cell {
+  background-color: palegreen;
+  margin: 2pt;
+  flex-basis: 33%;
+}
+
+.rows .row .header,
+.rows .row .title {
+  font-weight: bold;
+}
+
+.rows .row .header {
+  font-size: x-large;
+  text-align: center;
+}
+
+.rows .row .title {
+  font-size: large;
+}
+
+.intersection {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.intersection .locale {
+  background-color: lightgreen;
+  min-width: 70pt;
+  text-align: center;
+  margin: 2pt;
 }

@@ -1,35 +1,59 @@
-<h2>Globalize 0.1.1 &amp; CLDR modern: {{bothModernLocaleNames.length}}</h2>
-<div class="locales">
-  <div class="locale" *ngFor="let localeName of bothModernLocaleNames">
-    {{localeName}}
+<div class="rows">
+  <div class="row header">
+    <div class="cell header"></div>
+    <div class="cell header">Modern</div>
+    <div class="cell header">Full</div>
   </div>
-</div>
-
-<h2>Globalize 0.1.1 &amp; CLDR full: {{bothFullLocaleNames.length}}</h2>
-<div class="locales">
-  <div class="locale" *ngFor="let localeName of bothFullLocaleNames">
-    {{localeName}}
+  <div class="row">
+    <div class="cell title">Same name</div>
+    <div class="cell intersection">
+      <div class="locale" *ngFor="let localeName of modern.same">
+        {{localeName}}
+      </div>
+    </div>
+    <div class="cell intersection">
+      <div class="locale" *ngFor="let localeName of full.same">
+        {{localeName}}
+      </div>
+    </div>
   </div>
-</div>
-
-<h2>Only Globalize 0.1.1: {{onlyVersion0LocaleNames.length}}</h2>
-<div class="locales">
-  <div class="locale warning" *ngFor="let locale of onlyVersion0LocaleNames">
-      <div class="good" *ngIf="locale.likelyName; else elseBlock">{{locale.name}} &#x2192; {{locale.likelyName}}</div>
-      <ng-template #elseBlock><span>{{locale.name}}</span></ng-template>
+  <div class="row">
+    <div class="cell title">Changed name</div>
+    <div class="cell intersection">
+      <div class="locale" *ngFor="let localeName of modern.changed">
+        {{localeName}} &#x2192; {{pairs[localeName]}}
+      </div>
+    </div>
+    <div class="cell intersection">
+      <div class="locale" *ngFor="let localeName of full.changed">
+        {{localeName}} &#x2192; {{pairs[localeName]}}
+      </div>
+    </div>
   </div>
-</div>
-
-<h2>Only CLDR modern: {{onlyModernLocaleNames.length}}</h2>
-<div class="locales">
-  <div class="locale" *ngFor="let localeName of onlyModernLocaleNames">
-    {{localeName}}
+  <div class="row">
+    <div class="cell title">New locales</div>
+    <div class="cell intersection">
+      <div class="locale" *ngFor="let localeName of modern.added">
+        {{localeName}}
+      </div>
+    </div>
+    <div class="cell intersection">
+      <div class="locale" *ngFor="let localeName of full.added">
+        {{localeName}}
+      </div>
+    </div>
   </div>
-</div>
-
-<h2>Only CLDR full: {{onlyFullLocaleNames.length}}</h2>
-<div class="locales">
-  <div class="locale" *ngFor="let localeName of onlyFullLocaleNames">
-    {{localeName}}
+  <div class="row">
+    <div class="cell title">Not available</div>
+    <div class="cell intersection">
+      <div class="locale" *ngFor="let localeName of modern.removed">
+        {{localeName}}
+      </div>
+    </div>
+    <div class="cell intersection">
+      <div class="locale" *ngFor="let localeName of full.removed">
+        {{localeName}}
+      </div>
+    </div>
   </div>
 </div>

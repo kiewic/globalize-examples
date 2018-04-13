@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { LocaleComparisons } from './locale-comparison.model';
+import { LocaleNameBuckets } from './locale-name-buckets.model';
 import { LocaleNameService } from '../locale-name.service'
 import { HttpClient } from '@angular/common/http';
 
 // Quick and Dirty
 declare var Cldr: any;
 
-interface LocaleNamePair {
-  name: string;
-  likelyName?: string;
+interface LocaleNamePairs {
+  [id: string]: string;
 }
 
 @Component({
@@ -18,77 +17,63 @@ interface LocaleNamePair {
   providers: [LocaleNameService],
 })
 export class LocalesComponent implements OnInit {
-  allLocaleNames: string[];
-  onlyVersion0LocaleNames: LocaleNamePair[]= [];
-  bothModernLocaleNames: string[] = [];
-  bothFullLocaleNames: string[] = [];
-  onlyModernLocaleNames: string[] = [];
-  onlyFullLocaleNames: string[] = [];
+  modern = new LocaleNameBuckets();
+  full = new LocaleNameBuckets();
+  pairs: LocaleNamePairs = {};
 
-  private comparisons: LocaleComparisons = {};
-
-  constructor(localeNameService: LocaleNameService, httpClient: HttpClient) {
-    for (const localeName of localeNameService.getVersion0LocalNames()) {
-      this.add(localeName, 'version0');
-    }
-    for (const localeName of localeNameService.getModernLocaleNames()) {
-      this.add(localeName, 'modern');
-    }
-    for (const localeName of localeNameService.getFullLocaleNames()) {
-      this.add(localeName, 'full');
-    }
-
-    this.allLocaleNames = Object.keys(this.comparisons);
-
-    for (const localeName of this.allLocaleNames) {
-      const locale = this.comparisons[localeName];
-      if (locale.version0 && !locale.modern && !locale.full) {
-        this.onlyVersion0LocaleNames.push({ name: localeName });
-      }
-      else if (locale.version0 && locale.modern) {
-        this.bothModernLocaleNames.push(localeName);
-      }
-      else if (locale.version0 && locale.full) {
-        this.bothFullLocaleNames.push(localeName);
-      }
-      else if (locale.modern) {
-        this.onlyModernLocaleNames.push(localeName);
-      }
-      else if (locale.full) {
-        this.onlyFullLocaleNames.push(localeName);
-      }
-      else {
-        console.error(localeName);
-      }
-    }
-
+  constructor(private localeNameService: LocaleNameService, httpClient: HttpClient) {
     httpClient.get('/assets/cldr-core/supplemental/likelySubtags.json')
-      .subscribe((data: string) => this.loadCldr(data, localeNameService));
+      .subscribe((data: string) => this.compareLocales(data));
   }
 
   ngOnInit() {
   }
 
-  private add(localeName: string, prop: string) {
-    const comparisons = this.comparisons;
-    if (!comparisons[localeName]) {
-      comparisons[localeName] = {};
-    }
-    comparisons[localeName][prop] = true;
-  }
-
-  private loadCldr(likelySubtags: string, localeNameService: LocaleNameService) {
+  private compareLocales(likelySubtags: string): void {
     Cldr.load(likelySubtags);
-
     Cldr.setAvailableBundlesHack = function(availableLocales: string[]) {
       availableLocales.splice(availableLocales.indexOf("root"), 1);
       this._availableBundleMapQueue = availableLocales;
     };
+    Cldr.setAvailableBundlesHack(this.localeNameService.getFullLocaleNames());
 
-    Cldr.setAvailableBundlesHack(localeNameService.getFullLocaleNames());
+    this.compare(this.modern, this.localeNameService.getVersion0LocalNames(), this.localeNameService.getModernLocaleNames());
+    this.compare(this.full, this.localeNameService.getVersion0LocalNames(), this.localeNameService.getFullLocaleNames());
+  }
 
-    for (const onlyVersion0Locale of this.onlyVersion0LocaleNames) {
-      onlyVersion0Locale.likelyName = new Cldr(onlyVersion0Locale.name).attributes.bundle;
+  private compare(buckets: LocaleNameBuckets, version0: string[], version1: string[]) {
+    for (const localeName of version0) {
+      const index = version1.indexOf(localeName);
+      console.log(localeName, index);
+      if (index > -1) {
+        version1.splice(index, 1);
+        buckets.same.push(localeName);
+        continue;
+      }
+
+      const likelyName = new Cldr(localeName).attributes.bundle;
+      if (likelyName) {
+        version1.splice(index, 1);
+        buckets.changed.push(localeName);
+        this.pairs[localeName] = likelyName;
+      }
     }
+
+    for (const localeName of buckets.same) {
+      const index = version0.indexOf(localeName);
+      if (index > -1) {
+        version0.splice(index, 1);
+      }
+    }
+
+    for (const localeName of buckets.changed) {
+      const index = version0.indexOf(localeName);
+      if (index > -1) {
+        version0.splice(index, 1);
+      }
+    }
+
+    buckets.added.push(...version1);
+    buckets.removed.push(...version0);
   }
 }
