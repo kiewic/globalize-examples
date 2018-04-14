@@ -1,49 +1,4 @@
-.warning {
-  background-color: palegoldenrod;
-  background-color: lightcoral;
-  min-width: 164pt;
-}
-
-.warning .good {
-  background-color: palegreen;
-}
-
 /* Version 2 */
-
-.rows {
-  display: flex;
-  flex-direction: column;
-}
-
-.rows .row {
-  display: flex;
-  flex-direction: row;
-}
-
-.rows .row .cell {
-  background-color: palegreen;
-  margin: 2pt;
-}
-
-.rows .row .header,
-.rows .row .title {
-  font-weight: bold;
-}
-
-.rows .row .header {
-  font-size: x-large;
-  text-align: center;
-}
-
-.rows .row .title {
-  font-size: large;
-}
-
-.intersection.header,
-.intersection {
-  /* as flex child */
-  flex-basis: 40%;
-}
 
 .locales {
   /* as flex parent */
@@ -51,9 +6,18 @@
   flex-wrap: wrap;
   align-content: flex-start;
 }
+
 .locales .locale {
   background-color: lightgreen;
   min-width: 70pt;
   text-align: center;
   margin: 2pt;
+}
+
+.changedName .locales .locale {
+  min-width: 140pt;
+}
+
+.notAvailable .locales .locale {
+  background-color: lightpink;
 }
