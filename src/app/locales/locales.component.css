@@ -1,23 +1,23 @@
-.locales  {
+/* Version 2 */
+
+.locales {
+  /* as flex parent */
   display: flex;
   flex-wrap: wrap;
-  flex-grow: 1;
+  align-content: flex-start;
 }
 
-.locale {
+.locales .locale {
   background-color: lightgreen;
-  min-width: 80pt;
-  display: block;
+  min-width: 70pt;
   text-align: center;
   margin: 2pt;
 }
 
-.warning {
-  background-color: palegoldenrod;
-  background-color: lightcoral;
-  min-width: 164pt;
+.changedName .locales .locale {
+  min-width: 140pt;
 }
 
-.warning .good {
-  background-color: palegreen;
+.notAvailable .locales .locale {
+  background-color: lightpink;
 }

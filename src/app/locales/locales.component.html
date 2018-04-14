@@ -1,35 +1,87 @@
-<h2>Globalize 0.1.1 &amp; CLDR modern: {{bothModernLocaleNames.length}}</h2>
-<div class="locales">
-  <div class="locale" *ngFor="let localeName of bothModernLocaleNames">
-    {{localeName}}
-  </div>
-</div>
-
-<h2>Globalize 0.1.1 &amp; CLDR full: {{bothFullLocaleNames.length}}</h2>
-<div class="locales">
-  <div class="locale" *ngFor="let localeName of bothFullLocaleNames">
-    {{localeName}}
-  </div>
-</div>
-
-<h2>Only Globalize 0.1.1: {{onlyVersion0LocaleNames.length}}</h2>
-<div class="locales">
-  <div class="locale warning" *ngFor="let locale of onlyVersion0LocaleNames">
-      <div class="good" *ngIf="locale.likelyName; else elseBlock">{{locale.name}} &#x2192; {{locale.likelyName}}</div>
-      <ng-template #elseBlock><span>{{locale.name}}</span></ng-template>
-  </div>
-</div>
-
-<h2>Only CLDR modern: {{onlyModernLocaleNames.length}}</h2>
-<div class="locales">
-  <div class="locale" *ngFor="let localeName of onlyModernLocaleNames">
-    {{localeName}}
-  </div>
-</div>
-
-<h2>Only CLDR full: {{onlyFullLocaleNames.length}}</h2>
-<div class="locales">
-  <div class="locale" *ngFor="let localeName of onlyFullLocaleNames">
-    {{localeName}}
-  </div>
-</div>
+<table>
+  <thead>
+    <tr>
+      <th style="width: 20%"></th>
+      <th style="width: 40%">Modern</th>
+      <th style="width: 40%">Full</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Same name</th>
+      <td>
+        <div>count: {{modern.same.length}}</div>
+        <div class="locales">
+          <div class="locale" *ngFor="let localeName of modern.same">
+            {{localeName}}
+          </div>
+        </div>
+      </td>
+      <td>
+        <div>count: {{full.same.length}}</div>
+        <div class="locales">
+          <div class="locale" *ngFor="let localeName of full.same">
+            {{localeName}}
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr class="changedName">
+      <th>Changed name</th>
+      <td>
+        <div>count: {{modern.changed.length}}</div>
+        <div class="locales">
+          <div class="locale" *ngFor="let localeName of modern.changed">
+            {{localeName}} &#x2192; {{pairs[localeName]}}
+          </div>
+        </div>
+      </td>
+      <td>
+        <div>count: {{full.changed.length}}</div>
+        <div class="locales">
+          <div class="locale" *ngFor="let localeName of full.changed">
+            {{localeName}} &#x2192; {{pairs[localeName]}}
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th>New locales</th>
+      <td>
+        <div>count: {{modern.added.length}}</div>
+        <div class="locales">
+          <div class="locale" *ngFor="let localeName of modern.added">
+            {{localeName}}
+          </div>
+        </div>
+      </td>
+      <td>
+        <div>count: {{full.added.length}}</div>
+        <div class="locales">
+          <div class="locale" *ngFor="let localeName of full.added">
+            {{localeName}}
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr class="notAvailable">
+      <th>Not available</th>
+      <td>
+        <div>count: {{modern.removed.length}}</div>
+        <div class="locales">
+          <div class="locale" *ngFor="let localeName of modern.removed">
+            {{localeName}}
+          </div>
+        </div>
+      </td>
+      <td>
+        <div>count: {{full.removed.length}}</div>
+        <div class="locales">
+          <div class="locale" *ngFor="let localeName of full.removed">
+            {{localeName}}
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
