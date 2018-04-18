@@ -39,10 +39,13 @@ export class Version011DatesComponent implements OnInit {
     for (const cultureSelector of this.cultureSelectors) {
       const culture = Globalize.culture(cultureSelector);
       const cultureModel = this.cultures[cultureSelector] = new CultureModel();
-      const patternSelectors = cultureModel.patternSelectors = Object.keys(culture.calendar.patterns);
-      const results = cultureModel.formattedDates = {};
+      const patterns = culture.calendar.patterns;
+      const patternSelectors = cultureModel.patternSelectors = Object.keys(patterns);
       for (const patternSelector of patternSelectors) {
-        results[patternSelector] = Globalize.format(myDate, patternSelector, culture);
+        cultureModel.formattedDates[patternSelector] = {
+          pattern: patterns[patternSelector],
+          example: Globalize.format(myDate, patternSelector, culture),
+        };
       }
     }
   }

@@ -9,7 +9,10 @@
     <tbody>
       <tr *ngFor="let cultureSelector of cultureSelectors">
         <td>{{cultureSelector}}</td>
-        <td *ngFor="let patternSelector of cultures[cultureSelector].patternSelectors">{{cultures[cultureSelector].formattedDates[patternSelector]}}</td>
+        <td *ngFor="let patternSelector of cultures[cultureSelector].patternSelectors">
+          {{cultures[cultureSelector].formattedDates[patternSelector].pattern}}<br />
+          <i>{{cultures[cultureSelector].formattedDates[patternSelector].example}}</i>
+        </td>
       </tr>
     </tbody>
   </table>
